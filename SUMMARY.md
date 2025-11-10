@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Welcome](README.md)
+* [Benefits](benefits.md)
 
 ## Getting Started
 
