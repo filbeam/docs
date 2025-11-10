@@ -17,6 +17,8 @@ layout:
 
 # Upload File
 
+Here, we see how to upload a file to FWSS, which is obviously necessary before we retrieve it through Filecoin Beam.
+
 ```javascript
 // Read the file into an in-memory buffer
 const fileData = await readFile(filePath)
