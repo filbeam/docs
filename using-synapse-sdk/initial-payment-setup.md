@@ -17,7 +17,9 @@ layout:
 
 # Initial Payment Setup
 
-You need to set up payments before you can upload files to Filecoin PDP.
+In order to use Filecoin Services, you first nee to set up the payment rails to pay for those services. This is web3 and so payments for services are locked up in advance, and the redeemable by the service provider upon verification of a successful service provided.&#x20;
+
+This means to get started with storing on FWSS, some funds must be deposit and approved for FWSS.
 
 **Using Synapse SDK API**
 
