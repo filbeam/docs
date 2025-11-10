@@ -2,6 +2,7 @@
 
 * [Welcome](README.md)
 * [Benefits](benefits.md)
+* [Pricing](pricing.md)
 
 ## Getting Started
 
