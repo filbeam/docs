@@ -39,6 +39,3 @@ const downloadedData = await res.arrayBuffer()
 // TODO: verify that `downloadedData` hashes to the digest in `cid`
 ```
 
-#### **Example URL:**&#x20;
-
-[https://0xd76b6e5e016d77123028c7ae439f631cf65535db.calibration.filbeam.io/bafkzcibeqtqqyeavuhiupl5dxo7baqx6iimwvcuomz7tmtuakjelsfsldnjn5dwggy](https://0xd76b6e5e016d77123028c7ae439f631cf65535db.calibration.filbeam.io/bafkzcibeqtqqyeavuhiupl5dxo7baqx6iimwvcuomz7tmtuakjelsfsldnjn5dwggy)
