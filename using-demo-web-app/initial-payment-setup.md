@@ -1,10 +1,17 @@
 # Initial Payment Setup
 
-Once you are on the website, you need to set up payments before you can upload files to FWSS.
+Once you are on the website, you need to add some funds. You will need some USDFC in order to complete this step. Head to the above section on [setting up your wallet](../getting-started/quickstart.md) to learn how to get USDFC into your wallet on Calibration Net or Mainnet.&#x20;
 
-1. In the Manage Storage tab, click on “Deposit & Increase Allowances” to start the process of authorizing Filecoin Services to charge your wallet for storage deals.
-2. This will open your wallet with a **Spending Cap request** to approve. Change the Spending Cap value from “Unlimited” to an amount smaller than your USDFC balance and confirm the transaction.
-3. After the blockchain confirms the first transaction, the app will deposit USDFC to pay for storing 10 GB for 30 days. Approve the **Deposit** transaction request in your wallet.
-4. Finally, the app requires you to sign some metadata (more details about this request will follow soon). Approve the request in your wallet.
 
-You are now all set to upload your file.
+
+Once you have some funds in your wallet,  head to the "Pay Account" section and then click "Deposit" to add some funds from your wallet into the app.&#x20;
+
+
+
+
+
+This will require a few signatures to execute. It will also take a bit of time for the transaction to finalize on chain. Once completed, your "Available Balance" should be incremented by the amout you added.
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+Now we are ready to upload a file.
