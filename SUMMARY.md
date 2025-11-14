@@ -11,10 +11,6 @@
 ## Using Synapse SDK
 
 * [About](using-synapse-sdk/about.md)
-* [Initial Payment Setup](using-synapse-sdk/initial-payment-setup.md)
-* [Initialize Synapse](using-synapse-sdk/initialize-synapse.md)
-* [Upload File](using-synapse-sdk/upload-file.md)
-* [Retrieve File](using-synapse-sdk/retrieve-file.md)
 
 ## Using Demo Web App
 
