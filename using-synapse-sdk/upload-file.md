@@ -39,7 +39,7 @@ const uploadResult = await storageContext.upload(fileData, {
     console.log('✓ Piece addition confirmed on-chain!')
     console.log(`  Assigned piece IDs: ${pieceIds.join(', ')}`)
   },
-  // Learn about additional callbas in the docs
+  // Learn about additional callbacks in the docs
 })
 
 const cid = uploadResult.pieceCid
