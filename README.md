@@ -28,8 +28,8 @@ Filecoin Beam speeds up data retrieval, reduces egress bills, and protects Filec
 
 In order to use Filecoin Beam, you must store data on the Filecoin Calibration testnet in two ways:
 
-1. [Programmatically using the Synapse SDK](https://filbeam.com/docs#block-216cdd5cccdb801ab81de4afdb3ed22c)
-2. [Manually using a demo web app](https://filbeam.com/docs#block-216cdd5cccdb80b0809af051209af6f0) (coming soon)
+1. Programmatically [using the Synapse SDK](broken-reference)
+2. Manually [using a demo web app](broken-reference)
 
 And before you do anything, you must [set up your wallet](https://filbeam.com/docs#block-216cdd5cccdb8097a0a8cd9eb280f4bf) first.
 
