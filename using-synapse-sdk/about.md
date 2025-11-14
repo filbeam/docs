@@ -22,6 +22,8 @@ The [Synapse SDK](https://docs.filecoin.cloud/getting-started/) an easy-to-use l
 
 When making storage deals, you can set up your data retrievable through Filecoin Beam by setting up the config correctly in the Synapse SDK. In the following few pages, we will go through a step-by-step guide of how to use the Synapse SDK for storing data and then retrieving it through Filecoin Beam.
 
+Alternatively - and to be sure you are looking at up-to-date Synapse SDK examples - head to the [Synapse getting started guide](https://docs.filecoin.cloud/getting-started/), but make sure to set the Filecoin Beam parameter `withCDN` to `true` when setting up the Synapse SDK instance.
+
 ### Key Links
 
 * Learn more about Synapse SDK in [their documentation on GitHub](https://github.com/FilOzone/synapse-sdk?tab=readme-ov-file#table-of-contents).
