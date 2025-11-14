@@ -44,7 +44,7 @@ const storageContext = await synapse.storage.createContext({
     onProviderSelected: (provider) => {
       console.log(`✓ Selected service provider: ${provider.serviceProvider}`)
     },
-    // Learn about additional callbas in the docs
+    // Learn about additional callbacks in the docs
   },
 })
 ```

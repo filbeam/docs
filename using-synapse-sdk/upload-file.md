@@ -20,6 +20,8 @@ layout:
 Here, we see how to upload a file to FWSS, which is obviously necessary before we retrieve it through Filecoin Beam.
 
 ```javascript
+import { readFile } from 'node:fs/promises'
+
 // Read the file into an in-memory buffer
 const fileData = await readFile(filePath)
 
@@ -27,14 +29,13 @@ const fileData = await readFile(filePath)
 const preflight = await storageContext.preflightUpload(fileData.length)
 
 if (!preflight.allowanceCheck.sufficient) {
-  // The Filecoin Services deal is not sufficient
+  // The Filecoin Services allowance is not sufficient
   // You need to increase the allowance, e.g. via the web app
-  throw new Error(`Insufficient allowances: ${preflight.allowanceCheck.message}`)
+  throw new Error(`Insufficient allowance: ${preflight.allowanceCheck.message}`)
 }
 
 const uploadResult = await storageContext.upload(fileData, {
   onPieceConfirmed: (pieceIds) => {
-    // New callback - only called with updated servers
     console.log('✓ Piece addition confirmed on-chain!')
     console.log(`  Assigned piece IDs: ${pieceIds.join(', ')}`)
   },
