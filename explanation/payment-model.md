@@ -193,19 +193,7 @@ Each request is logged to D1 for future processing.
 
 ## Phase 4: Usage Reporting (On-Chain)
 
-Periodically, the Usage Reporter aggregates logs and reports to the blockchain:
-
-**Aggregation query:**
-```sql
-SELECT
-  data_set_id,
-  SUM(egress_bytes) as cdn_bytes,
-  SUM(CASE WHEN cache_miss THEN egress_bytes ELSE 0 END) as cache_miss_bytes
-FROM retrieval_logs
-WHERE timestamp > ?  -- Since last report
-  AND bot_name IS NULL  -- Exclude bot traffic
-GROUP BY data_set_id;
-```
+Periodically, the Usage Reporter aggregates logs and reports to the blockchain.
 
 **On-chain reporting:**
 ```javascript
