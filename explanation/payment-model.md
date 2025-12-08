@@ -141,15 +141,7 @@ Cache Miss Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
                  = 1 TiB
 ```
 
-The quota is stored in FilBeam's D1 database:
-
-```sql
-INSERT INTO data_set_egress_quotas (data_set_id, cdn_egress_quota, cache_miss_egress_quota)
-VALUES (?, ?, ?)
-ON CONFLICT(data_set_id) DO UPDATE SET
-  cdn_egress_quota = cdn_egress_quota + excluded.cdn_egress_quota,
-  cache_miss_egress_quota = cache_miss_egress_quota + excluded.cache_miss_egress_quota;
-```
+The updated quota is stored in FilBeam's D1 database.
 
 ## Phase 3: Content Delivery (Off-Chain)
 
