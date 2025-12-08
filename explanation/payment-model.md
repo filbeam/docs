@@ -285,7 +285,7 @@ sequenceDiagram
 
 ## Cost Breakdown
 
-Both payment rails charge **$7/TiB**. The effective cost depends on request type:
+Both payment rails charge **$7/TiB**. The effective cost depends on the request type:
 
 | Request Type | CDN Rail | Cache-Miss Rail | Total Cost |
 |--------------|----------|-----------------|------------|
