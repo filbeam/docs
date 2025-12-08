@@ -116,7 +116,7 @@ await walletClient.writeContract({
 
 ## Phase 2: Quota Calculation (Off-Chain)
 
-The FilBeam Indexer receives the blockchain event and calculates quota:
+The FilBeam Indexer receives the blockchain event and calculates quotas:
 
 ```
 CDN Quota (bytes) = (USDFC amount × BYTES_PER_TIB) / CDN_RATE
