@@ -279,7 +279,7 @@ sequenceDiagram
 
 ### Settlement Details
 
-- **Anyone can call** the settlement methods, but funds go to the designated payees Filecoin Pay account
+- **Anyone can call** the settlement methods, but funds go to the designated payee's Filecoin Pay account
 - **Partial settlements** are supported if locked funds are insufficient
 - **Amounts accumulate** between settlements - no need to settle after every usage report
 
