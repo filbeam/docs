@@ -189,12 +189,7 @@ sequenceDiagram
 | Cache Hit | -N bytes | unchanged |
 | Cache Miss | -N bytes | -N bytes |
 
-Each request is logged to the `retrieval_logs` table:
-
-```sql
-INSERT INTO retrieval_logs (timestamp, data_set_id, egress_bytes, cache_miss)
-VALUES (datetime('now'), ?, ?, ?);
-```
+Each request is logged to D1 for future processing.
 
 ## Phase 4: Usage Reporting (On-Chain)
 
