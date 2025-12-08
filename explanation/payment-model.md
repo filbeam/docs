@@ -208,7 +208,7 @@ await walletClient.writeContract({
 
 ## Phase 5: Settlement (On-Chain)
 
-Settlement transfers funds from payment rails to **recipients Filecoin Pay account**. Both FilBeam and storage providers call the **FilBeamOperator** contract to settle their respective rails.
+Settlement transfers funds from payment rails to **recipient's Filecoin Pay account**. Both FilBeam and storage providers call the **FilBeamOperator** contract to settle their respective rails.
 
 ### How Settlement Amounts Are Calculated
 
