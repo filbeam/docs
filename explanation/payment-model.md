@@ -64,44 +64,21 @@ See [Payment Rails](../reference/payment-rails.md) to learn how do payment rails
 ```mermaid
 sequenceDiagram
     participant User
-    participant FWSS as FWSS Contract<br/>(On-Chain)
-    participant FilBeam as FilBeam<br/>(Off-Chain)
-    participant DB as FilBeam Database<br/>(Off-Chain)
-    participant Operator as FilBeamOperator<br/>(On-Chain)
+    participant Chain as On-Chain
+    participant FilBeam as FilBeam (Off-Chain)
     participant SP as Storage Provider
 
-    Note over User,SP: Phase 1: Top-Up (On-Chain)
-    User->>FWSS: topUpCDNPaymentRails($10 CDN, $10 cache-miss)
-    FWSS->>FWSS: Lock USDFC in payment rails
-    FWSS-->>FilBeam: Emit CdnPaymentRailsToppedUp event
+    User->>Chain: 1. Top-up payment rails
+    Chain-->>FilBeam: Emit event
+    FilBeam->>FilBeam: 2. Calculate & credit quota
 
-    Note over User,SP: Phase 2: Quota Calculation (Off-Chain)
-    FilBeam->>DB: Calculate quota from USDFC amount
-    Note right of DB: CDN: $7 → 1 TiB<br/>Cache-miss: $7 → 1 TiB
-    FilBeam->>DB: Credit quota to data set
-
-    Note over User,SP: Phase 3: Content Delivery (Off-Chain)
-    User->>FilBeam: Request content
-    FilBeam->>DB: Check quota available
-    DB-->>FilBeam: Quota OK
-    FilBeam->>SP: Fetch content (cache miss)
-    SP-->>FilBeam: Return content
-    FilBeam->>DB: Log retrieval (bytes, cache-miss flag)
-    FilBeam->>DB: Decrement quotas
+    User->>FilBeam: 3. Request content
+    FilBeam->>SP: Fetch on cache miss
     FilBeam-->>User: Serve content
 
-    Note over User,SP: Phase 4: Usage Reporting (On-Chain)
-    FilBeam->>DB: Aggregate retrieval logs
-    FilBeam->>Operator: recordUsageRollups(dataSetIds, cdnBytes, cacheMissBytes)
-    Operator->>Operator: Calculate & store settlement amounts
-
-    Note over User,SP: Phase 5: Settlement (On-Chain)
-    FilBeam->>Operator: settleCDNPaymentRails(dataSetIds)
-    Operator->>FWSS: Settle with pre-calculated amount
-    FWSS->>FWSS: Transfer CDN fees to FilBeam
-    SP->>FilBeam: settleCacheMissPaymentRails(dataSetIds)
-    FilBeam->>FWSS: Settle with pre-calculated amount
-    FWSS->>FWSS: Transfer cache-miss fees ($7/TiB)
+    FilBeam->>Chain: 4. Report usage
+    FilBeam->>Chain: 5a. Settle CDN fees
+    SP->>Chain: 5b. Settle cache-miss fees
 ```
 
 ## Phase 1: Top-Up (On-Chain)
