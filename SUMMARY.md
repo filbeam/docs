@@ -18,3 +18,22 @@
 * [Initial Payment Setup](using-demo-web-app/initial-payment-setup.md)
 * [Upload File](using-demo-web-app/upload-file.md)
 * [Retrieve File](using-demo-web-app/retrieve-file.md)
+
+## How it works
+
+* [Pay-per-byte Payment Model](explanation/payment-model.md)
+* [Quota System](explanation/quota-system.md)
+* [Usage Reporting](explanation/usage-reporting.md)
+
+## How To Guides
+
+* [Monitor Usage](how-to/monitor-usage.md)
+* [Observe Reported Usage](how-to/observe-reported-usage.md)
+* [Settle Payment Rails](how-to/settle-payment-rails.md)
+* [Top Up CDN Quota](how-to/top-up-cdn-quota.md)
+
+## Reference
+
+* [FilBeamOperator Contract](reference/filbeam-operator.md)
+* [Payment Rails](reference/payment-rails.md)
+* [FilBeam Stats API](reference/stats-api.md)
