@@ -44,45 +44,42 @@ sequenceDiagram
 sequenceDiagram
     participant User
     participant FWSS as FWSS Contract<br/>(On-Chain)
-    participant Indexer as FilBeam Indexer<br/>(Off-Chain)
+    participant FilBeam as FilBeam<br/>(Off-Chain)
     participant DB as FilBeam Database<br/>(Off-Chain)
-    participant CDN as FilBeam CDN<br/>(Off-Chain)
-    participant Reporter as Usage Reporter<br/>(Off-Chain)
     participant Operator as FilBeamOperator<br/>(On-Chain)
-    participant Settler as Payment Settler<br/>(Off-Chain)
     participant SP as Storage Provider
 
     Note over User,SP: Phase 1: Top-Up (On-Chain)
     User->>FWSS: topUpCDNPaymentRails($10 CDN, $10 cache-miss)
     FWSS->>FWSS: Lock USDFC in payment rails
-    FWSS-->>Indexer: Emit CdnPaymentRailsToppedUp event
+    FWSS-->>FilBeam: Emit CdnPaymentRailsToppedUp event
 
     Note over User,SP: Phase 2: Quota Calculation (Off-Chain)
-    Indexer->>DB: Calculate quota from USDFC amount
+    FilBeam->>DB: Calculate quota from USDFC amount
     Note right of DB: CDN: $7 → 1 TiB<br/>Cache-miss: $7 → 1 TiB
-    Indexer->>DB: Credit quota to data set
+    FilBeam->>DB: Credit quota to data set
 
     Note over User,SP: Phase 3: Content Delivery (Off-Chain)
-    User->>CDN: Request content
-    CDN->>DB: Check quota available
-    DB-->>CDN: Quota OK
-    CDN->>SP: Fetch content (cache miss)
-    SP-->>CDN: Return content
-    CDN->>DB: Log retrieval (bytes, cache-miss flag)
-    CDN->>DB: Decrement quotas
-    CDN-->>User: Serve content
+    User->>FilBeam: Request content
+    FilBeam->>DB: Check quota available
+    DB-->>FilBeam: Quota OK
+    FilBeam->>SP: Fetch content (cache miss)
+    SP-->>FilBeam: Return content
+    FilBeam->>DB: Log retrieval (bytes, cache-miss flag)
+    FilBeam->>DB: Decrement quotas
+    FilBeam-->>User: Serve content
 
     Note over User,SP: Phase 4: Usage Reporting (On-Chain)
-    Reporter->>DB: Aggregate retrieval logs
-    Reporter->>Operator: recordUsageRollups(dataSetIds, cdnBytes, cacheMissBytes)
+    FilBeam->>DB: Aggregate retrieval logs
+    FilBeam->>Operator: recordUsageRollups(dataSetIds, cdnBytes, cacheMissBytes)
     Operator->>Operator: Calculate & store settlement amounts
 
     Note over User,SP: Phase 5: Settlement (On-Chain)
-    Settler->>Operator: settleCDNPaymentRails(dataSetIds)
+    FilBeam->>Operator: settleCDNPaymentRails(dataSetIds)
     Operator->>FWSS: Settle with pre-calculated amount
     FWSS->>FWSS: Transfer CDN fees to FilBeam
-    SP->>Operator: settleCacheMissPaymentRails(dataSetIds)
-    Operator->>FWSS: Settle with pre-calculated amount
+    SP->>FilBeam: settleCacheMissPaymentRails(dataSetIds)
+    FilBeam->>FWSS: Settle with pre-calculated amount
     FWSS->>FWSS: Transfer cache-miss fees ($7/TiB)
 ```
 
@@ -205,8 +202,6 @@ Storage providers call `FilBeamOperator.settleCacheMissPaymentRails` to claim th
 sequenceDiagram
     participant FB as FilBeam
     participant SP as Storage Provider
-    participant FBA as FilBeam Filecoin Pay Account
-    participant SPA as SP Filecoin Pay Account
     participant Operator as FilBeamOperator
     participant FWSS as FWSS Contract
     participant Rail as Payment Rail<br/>(Locked USDFC)
@@ -219,14 +214,14 @@ sequenceDiagram
     Operator->>Operator: Get stored cdnAmount
     Operator->>FWSS: Settle rail with cdnAmount
     FWSS->>Rail: Release funds
-    Rail->>FBA: Transfer USDFC
+    Rail->>FB: Transfer USDFC
 
     Note over FB,Rail: Cache-Miss Settlement
     SP->>Operator: settleCacheMissPaymentRails([dataSetIds])
     Operator->>Operator: Get stored cacheMissAmount
     Operator->>FWSS: Settle rail with cacheMissAmount
     FWSS->>Rail: Release funds
-    Rail->>SPA: Transfer USDFC
+    Rail->>SP: Transfer USDFC
 ```
 
 ### Settlement Details
