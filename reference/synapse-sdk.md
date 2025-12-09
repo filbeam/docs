@@ -18,7 +18,7 @@ layout:
 
 # About
 
-The [Synapse SDK](https://docs.filecoin.cloud/getting-started/) an easy-to-use library allowing developers to get started with the Filecoin Onchain Cloud and its services, such as Filecoin Beam. It allows you to store & retrieve data from Filecoin, as well as pay for these services.
+The [Synapse SDK](https://docs.filecoin.cloud/getting-started/) is an easy-to-use library allowing developers to get started with the Filecoin Onchain Cloud and its services, such as Filecoin Beam. It allows you to store & retrieve data from Filecoin, as well as pay for these services.
 
 When making storage deals, you can set up your data to retrievable through Filecoin Beam by setting the `withCDN` flag to `true` in the Synapse SDK config.
 
