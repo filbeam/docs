@@ -118,7 +118,7 @@ Where:
 
 ### Pricing
 
-For full pricing breakdown please reffer to the [Pricing](../pricing.md) page.
+For full pricing explanation please reffer to the [Pricing](..//explanation/pricing.md) page.
 
 ## Complete Top-Up Script
 
@@ -234,5 +234,5 @@ if (dataSet?.client?.toLowerCase() !== myAddress.toLowerCase()) {
 ## Next Steps
 
 - [Monitor Usage](monitor-usage.md) - Track your quota consumption
-- [Pricing Reference](../pricing.md) - Detailed pricing information
+- [Pricing Reference](../explanation/pricing.md) - Detailed pricing information
 - [Synapse SDK Documentation](https://docs.filecoin.cloud/getting-started/) - Get started with the Synapse SDK

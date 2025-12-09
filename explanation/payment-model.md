@@ -291,4 +291,4 @@ sequenceDiagram
 - [Monitor Usage](../how-to/monitor-usage.md) - Check your quotas and usage
 
 **Reference:**
-- [Pricing](../pricing.md) - Detailed pricing information
+- [Pricing](pricing.md) - Detailed pricing information

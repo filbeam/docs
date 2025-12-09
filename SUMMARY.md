@@ -2,7 +2,6 @@
 
 * [Welcome](README.md)
 * [Benefits](benefits.md)
-* [Pricing](pricing.md)
 
 ## Getting Started
 
@@ -20,6 +19,7 @@
 * [Pay-per-byte Payment Model](explanation/payment-model.md)
 * [Quota System](explanation/quota-system.md)
 * [Usage Reporting](explanation/usage-reporting.md)
+* [Pricing](explanation/pricing.md)
 
 ## How To Guides
 
