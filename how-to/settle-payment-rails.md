@@ -1,3 +1,20 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+---
+
 # Settle Payment Rails (For Storage Providers)
 
 This guide explains how storage providers can settle their payment rails to collect earnings from cache-miss retrievals.

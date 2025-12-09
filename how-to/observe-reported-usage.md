@@ -1,3 +1,20 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+---
+
 # Observe Reported Usage (For Storage Providers)
 
 This guide explains how storage providers can observe and verify the usage data that FilBeam reports on-chain.
