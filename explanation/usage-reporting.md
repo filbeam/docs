@@ -40,9 +40,8 @@ FilBeam reports two metrics for each data set:
 
 Not all traffic counts toward billing:
 
-- **Bot traffic** - Identified bot requests are logged but excluded from usage reports
 - **Invalid responses** - Cache misses where the response was invalid are not counted towards total bytes used
-- **Failed requests** - Only responses with actual bytes delivered are counted towards total bytes used
+- **Empty responses** - Only responses with actual bytes delivered are counted towards total bytes used
 
 ## Important Caveat
 
