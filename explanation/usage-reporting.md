@@ -23,7 +23,7 @@ For the complete payment flow, see [Payment Model](payment-model.md).
 
 ## Why On-Chain Reporting?
 
-FilBeam records all egress usage on the Filecoin blockchain to ensure transparency, enable provider verification, and support independent settlement. All reported usage data is publicly visible on-chain, allowing storage providers to independently verify that reported usage matches their delivery logs. 
+FilBeam records all egress usage on the Filecoin blockchain to ensure transparency, enable provider verification, and support on-chain settlement. All reported usage data is publicly visible on-chain, allowing storage providers to independently verify that reported usage matches their delivery logs. 
 
 This design also lets storage providers settle their payment rails at any time without relying on FilBeam to initiate payments.
 

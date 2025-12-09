@@ -8,10 +8,6 @@
 
 * [Set Up Your Wallet](getting-started/quickstart.md)
 
-## Using Synapse SDK
-
-* [About](using-synapse-sdk/about.md)
-
 ## Using Demo Web App
 
 * [About](using-demo-web-app/about.md)
@@ -34,6 +30,7 @@
 
 ## Reference
 
+* [Synapse SDK](reference/synapse-sdk.md)
 * [FilBeamOperator Contract](reference/filbeam-operator.md)
 * [Payment Rails](reference/payment-rails.md)
 * [FilBeam Stats API](reference/stats-api.md)
