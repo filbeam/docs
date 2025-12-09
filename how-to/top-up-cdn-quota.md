@@ -116,69 +116,9 @@ Where:
 - `BYTES_PER_TIB` = 1,099,511,627,776 (1024^4)
 - `RATE_PER_TIB` = $7 (7 × 10^18 in USDFC with 18 decimals)
 
-### Example Calculation
+### Pricing
 
-For $7 USDFC to each rail:
-
-```
-CDN Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
-          = 1,099,511,627,776 bytes
-          = 1 TiB
-
-Cache Miss Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
-                 = 1,099,511,627,776 bytes
-                 = 1 TiB
-```
-
-### Understanding Effective Costs
-
-Both rails charge $7/TiB independently. The effective cost depends on cache behavior:
-
-| Request Type | CDN Rail | Cache-Miss Rail | Effective Cost |
-|--------------|----------|-----------------|----------------|
-| Cache Hit | $7/TiB | — | **$7/TiB** |
-| Cache Miss | $7/TiB | $7/TiB | **$14/TiB** |
-
-**Important:** A cache miss consumes from BOTH quotas. To serve 1 TiB of cache-miss traffic, you need:
-- 1 TiB CDN quota ($7)
-- 1 TiB cache-miss quota ($7)
-- Total: $14
-
-## Quick Reference: Cost per TiB
-
-| Rail | Rate |
-|------|------|
-| CDN | $7/TiB |
-| Cache-Miss | $7/TiB |
-| **Cache miss (both rails)** | $14/TiB |
-
-## Top Up Helper Function
-
-```javascript
-import { ethers } from 'ethers'
-
-/**
- * Calculate USDFC needed for desired quota on a single rail
- * Both rails have the same $7/TiB rate
- * @param {number} tebibytes - Desired quota in TiB
- * @returns {bigint} Amount in USDFC (18 decimals)
- */
-function calculateTopUpAmount(tebibytes) {
-  const ratePerTiB = 7n * (10n ** 18n)  // $7 in USDFC (18 decimals)
-  // Convert TiB to bigint (multiply by 1000 to handle decimals, then divide)
-  const tibWhole = BigInt(Math.floor(tebibytes * 1000))
-  return (tibWhole * ratePerTiB) / 1000n
-}
-
-// Example: Top up to add 1 TiB of quota to each rail
-const amount = calculateTopUpAmount(1)
-console.log('Amount per rail (1 TiB):', ethers.formatUnits(amount, 18), 'USDFC')  // $7.00
-
-// For 0.5 TiB cache-miss capacity (need both rails)
-const cdnAmount = calculateTopUpAmount(0.5)       // $3.50
-const cacheMissAmount = calculateTopUpAmount(0.5) // $3.50
-console.log('Total for 0.5 TiB cache-miss:', ethers.formatUnits(cdnAmount + cacheMissAmount, 18), 'USDFC')  // $7.00
-```
+For full pricing breakdown please reffer to the [Pricing](../pricing.md) page.
 
 ## Complete Top-Up Script
 
@@ -273,10 +213,6 @@ if (!dataSet) {
   console.error('Data set not found')
 }
 ```
-
-### Transaction Times Out
-
-Filecoin transactions can take 30-60 seconds. The script already waits for confirmation.
 
 ### Wrong Payer
 

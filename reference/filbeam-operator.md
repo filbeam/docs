@@ -352,4 +352,3 @@ function transferFwssFilBeamController(address newController) external
 - [Usage Reporting Explained](../explanation/usage-reporting.md) - How usage data flows to this contract
 - [Observe Reported Usage](../how-to/observe-reported-usage.md) - Monitor on-chain usage data
 - [Settle Payment Rails](../how-to/settle-payment-rails.md) - Claim storage provider earnings
-- [Contracts Overview](contracts.md) - All FilBeam contracts

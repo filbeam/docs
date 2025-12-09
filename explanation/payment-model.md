@@ -55,6 +55,10 @@ sequenceDiagram
 | CDN Egress | User | FilBeam | CDN delivery fees |
 | Cache-Miss Egress | User | Storage Provider | Retrieval from origin |
 
+Unlike the storage payment rails CDN and cache-miss rails do not have a set payment rate. Rather, these rails use fixed lockup and are settled via one-time payments. 
+
+See [Payment Rails](../reference/payment-rails.md) to learn how do payment rails work in Filecoin Pay.
+
 ## Complete Payment Flow
 
 ```mermaid
@@ -138,7 +142,7 @@ Cache Miss Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
                  = 1 TiB
 ```
 
-The updated quota is stored in FilBeam's D1 database.
+The updated quota is stored in FilBeam's database.
 
 ## Phase 3: Content Delivery (Off-Chain)
 
@@ -178,7 +182,7 @@ sequenceDiagram
 | Cache Hit | -N bytes | unchanged |
 | Cache Miss | -N bytes | -N bytes |
 
-Each request is logged to D1 for future processing.
+Each request is logged to the database for future processing.
 
 ## Phase 4: Usage Reporting (On-Chain)
 
@@ -257,36 +261,6 @@ Both payment rails charge **$7/TiB**. The effective cost depends on the request 
 | **Cache Miss** | $7/TiB | $7/TiB | **$14/TiB** |
 
 The $14/TiB cache-miss cost comes from being charged on BOTH rails.
-
-## On-Chain vs Off-Chain Summary
-
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| Payment rails | On-chain | Lock funds, guarantee payment |
-| Top-up events | On-chain | Trigger quota calculation |
-| Quota tracking | Off-chain | Fast request validation |
-| Request serving | Off-chain | Low-latency content delivery |
-| Usage logging | Off-chain | Track egress for billing |
-| Usage reporting | On-chain | Transparent usage records |
-| Settlement | On-chain | Transfer funds to recipients |
-
-## Why This Model?
-
-### For Users
-- **Predictable costs**: Know exactly what you're paying upfront
-- **No surprise bills**: Service stops when quota exhausted
-- **Price protection**: Purchased quota keeps its rate
-- **Transparent**: All payments and usage on-chain
-
-### For Storage Providers
-- **Guaranteed payment**: Funds locked before service
-- **Self-service settlement**: Claim earnings anytime
-- **Fair compensation**: $7/TiB for actual bytes delivered
-
-### For the Network
-- **Decentralized**: No central billing authority
-- **Transparent**: All transactions queriable on-chain
-- **Trustless**: Smart contracts enforce payment rules
 
 ## Service Termination
 

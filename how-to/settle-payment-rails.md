@@ -365,4 +365,4 @@ https://faucet.calibnet.chainsafe-fil.io/
 ## Related Resources
 
 - [Payment Model](../explanation/payment-model.md) - Understanding pay-per-byte billing
-- [Contracts Reference](../reference/contracts.md) - Contract addresses and ABIs
+- [FilBeamOperator](../reference/filbeam-operator.md) - FilBeamOperator contract addresses and ABIs

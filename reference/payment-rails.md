@@ -65,7 +65,7 @@ Rails use lockup to guarantee funds are available for services:
    - Guarantees funds for rate-based payments over a pre-agreed period
    - Used for ongoing storage costs
 
-2. **Fixed Lockup** (for egress): Reserved for usage-based payments
+2. **Fixed Lockup** (for egress): Reserved for egress payments
    - Used for CDN and cache-miss egress
    - Converted to quota in FilBeam's off-chain database
 
@@ -73,7 +73,7 @@ The lockup is a **safety mechanism, not a pre-payment**. During normal operation
 
 ### Settlement Process
 
-Settlement transfers earned funds from the payer's account to the recipient:
+Settlement transfers earned funds from the payment rail fixed lockup to the recipient's Filecoin Pay account:
 
 ```mermaid
 sequenceDiagram
@@ -111,7 +111,7 @@ sequenceDiagram
     FWSS->>FP: createRail (storage)
     FWSS->>FP: createRail (CDN egress)
     FWSS->>FP: createRail (cache-miss egress)
-    FWSS->>FP: Lock initial funds in each rail
+    FWSS->>FP: Lock initial funds in CDN and cache-miss payment rail
 ```
 
 ### 2. Top-Up
@@ -188,7 +188,7 @@ sequenceDiagram
 ```
 
 After termination:
-- No new content can be served via FilBeam
+- No content from terminated data set can be served via FilBeam
 - Outstanding usage can still be settled
 - Remaining locked funds are released after the lockup period
 
