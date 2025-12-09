@@ -17,15 +17,15 @@ layout:
 
 # Usage Reporting
 
-This document explains why FilBeam reports usage on-chain and what this means for transparency and verification.
+This document explains how FilBeam reports usage on-chain and what this means for transparency and verification.
 
 For the complete payment flow, see [Payment Model](payment-model.md).
 
 ## Why On-Chain Reporting?
 
-FilBeam records all egress usage on the Filecoin blockchain to ensure transparency, enable provider verification, and support on-chain settlement. All reported usage data is publicly visible on-chain, allowing storage providers to independently verify that reported usage matches their delivery logs. 
+FilBeam records all egress usage on the Filecoin blockchain to ensure transparency, enabling verification to storage providers, and support for on-chain settlement. All reported usage data is publicly visible on-chain, allowing storage providers to independently verify that reported usage matches their delivery logs. 
 
-This design also lets storage providers settle their payment rails at any time without relying on FilBeam to initiate payments.
+This design also lets storage providers settle their payment rails at any time without relying on FilBeam to initiate or distribute payments.
 
 ## What Gets Reported
 
@@ -41,8 +41,8 @@ FilBeam reports two metrics for each data set:
 Not all traffic counts toward billing:
 
 - **Bot traffic** - Identified bot requests are logged but excluded from usage reports
-- **Invalid responses** - Cache misses where the response was invalid don't count
-- **Failed requests** - Only responses with actual bytes delivered are counted
+- **Invalid responses** - Cache misses where the response was invalid are not counted towards total bytes used
+- **Failed requests** - Only responses with actual bytes delivered are counted towards total bytes used
 
 ## Important Caveat
 
@@ -74,7 +74,7 @@ Storage providers can verify reported cache-miss bytes by:
 
 Earnings are calculated as: `cache_miss_bytes × $7/TiB`
 
-Content owners can view reported usage on-chain but have no mechanism to independently verify that reported bytes match their actual usage.
+Users storing their content can view reported usage on-chain but have no mechanism to independently verify that reported bytes match their actual usage.
 
 ## See Also
 

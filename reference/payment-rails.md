@@ -40,7 +40,7 @@ When a data set is created with FilBeam enabled, three payment rails are created
 
 ```mermaid
 flowchart LR
-    subgraph User["User Account"]
+    subgraph User["User Filecoin Pay Account"]
         Funds[Deposited USDFC]
     end
 

@@ -17,13 +17,13 @@ layout:
 
 # Quota System
 
-This document explains why FilBeam uses a dual quota system and how it affects your content delivery.
+This document explains how FilBeam uses a dual quota system and how it affects your content delivery.
 
 For the complete payment flow including top-ups, usage reporting, and settlement, see [Payment Model](payment-model.md).
 
 ## What is a Quota?
 
-A quota represents the amount of data you can transfer through FilBeam, measured in bytes. When you deposit funds on-chain, FilBeam derives your quota off-chain based on the deposited amount and the current price per byte.
+A quota represents the amount of data you can transfer through FilBeam, measured in bytes. When you lock funds into a payment rail on-chain, FilBeam derives your quota off-chain based on the deposited amount and the current price per byte.
 
 As content is delivered, your quota is consumed. When quota runs out, requests are blocked until you top up.
 
