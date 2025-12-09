@@ -256,12 +256,7 @@ Both payment rails charge **$7/TiB**. The effective cost depends on the request 
 | **Cache Hit** | $7/TiB | — | **$7/TiB** |
 | **Cache Miss** | $7/TiB | $7/TiB | **$14/TiB** |
 
-The $14/TiB cache-miss cost comes from being charged on BOTH rails:
-
-| Recipient | Amount | Settlement Method |
-|-----------|--------|-------------------|
-| **FilBeam CDN** | $7/TiB | `settleCDNPaymentRails()` |
-| **Storage Provider** | $7/TiB | `settleCacheMissPaymentRails()` |
+The $14/TiB cache-miss cost comes from being charged on BOTH rails.
 
 ## On-Chain vs Off-Chain Summary
 
