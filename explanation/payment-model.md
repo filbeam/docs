@@ -32,11 +32,11 @@ sequenceDiagram
     FWSS->>FWSS: Emit DataSetCreated event
 ```
 
-| Payment Rail | Payee | Purpose |
-|--------------|-------|---------|
-| Storage | Storage Provider | Ongoing storage costs |
-| CDN Egress | FilBeam | CDN delivery fees |
-| Cache-Miss Egress | Storage Provider | Retrieval from origin |
+| Payment Rail | Payer | Payee | Purpose |
+|--------------|-------|-------|---------|
+| Storage | User | Storage Provider | Ongoing storage costs |
+| CDN Egress | User | FilBeam | CDN delivery fees |
+| Cache-Miss Egress | User | Storage Provider | Retrieval from origin |
 
 ## Complete Payment Flow
 
@@ -88,31 +88,14 @@ sequenceDiagram
 
 ## Phase 1: Top-Up (On-Chain)
 
-The user tops up their FilBeam payment rails by calling the FWSS contract:
-
-```javascript
-import { createPublicClient, createWalletClient, http, parseUnits } from 'viem'
-import * as synapseCore from '@filoz/synapse-core'
-
-const chain = synapseCore.chains.calibration
-const storageContract = chain.contracts.storage
-
-// Top up with $10 for CDN and $10 for cache-miss
-const cdnAmount = parseUnits('10', 18)      // USDFC has 18 decimals
-const cacheMissAmount = parseUnits('10', 18)
-
-await walletClient.writeContract({
-  address: storageContract.address,
-  abi: storageContract.abi,
-  functionName: 'topUpCDNPaymentRails',
-  args: [dataSetId, cdnAmount, cacheMissAmount]
-})
-```
+The user tops up their FilBeam payment rails by calling the FWSS contract's `topUpCDNPaymentRails` method with the desired USDFC amounts for CDN and cache-miss rails.
 
 **What happens on-chain:**
 1. USDFC is locked in payment rails (CDN rail + cache-miss rail)
 2. Contract emits `CDNPaymentRailsToppedUp` event with amounts
 3. Funds are reserved but not yet transferred to anyone
+
+See [Top Up CDN Quota](../how-to/top-up-cdn-quota.md) for step-by-step instructions.
 
 ## Phase 2: Quota Calculation (Off-Chain)
 
@@ -185,26 +168,13 @@ Each request is logged to D1 for future processing.
 
 ## Phase 4: Usage Reporting (On-Chain)
 
-Periodically, the Usage Reporter aggregates logs and reports to the blockchain.
-
-**On-chain reporting:**
-```javascript
-await walletClient.writeContract({
-  address: filBeamOperator,
-  abi: filBeamOperatorAbi,
-  functionName: 'recordUsageRollups',
-  args: [
-    toEpoch,           // Filecoin epoch up to which usage is reported
-    dataSetIds,        // Array of data set IDs
-    cdnBytesUsed,      // Array of CDN bytes per data set
-    cacheMissBytesUsed // Array of cache-miss bytes per data set
-  ]
-})
-```
+Periodically, the Usage Reporter aggregates logs and reports usage to the blockchain via `FilBeamOperator.recordUsageRollups`. This records both CDN bytes (total egress) and cache-miss bytes (storage provider compensation) for each data set.
 
 **Reporting schedule:**
 - Calibration testnet: Every 30 minutes
 - Mainnet: Every 4 hours
+
+See [Usage Reporting](usage-reporting.md) for details on what gets reported and why.
 
 ## Phase 5: Settlement (On-Chain)
 
@@ -223,29 +193,11 @@ These amounts are stored in the contract and accumulate with each usage report. 
 
 ### CDN Settlement (FilBeam)
 
-FilBeam calls the FilBeamOperator to settle the CDN rail:
-
-```javascript
-await walletClient.writeContract({
-  address: filBeamOperator,
-  abi: filBeamOperatorAbi,
-  functionName: 'settleCDNPaymentRails',
-  args: [dataSetIds]
-})
-```
+FilBeam calls `FilBeamOperator.settleCDNPaymentRails` to claim accumulated CDN fees. The pre-calculated amount is transferred from the payment rail to FilBeam's Filecoin Pay account.
 
 ### Cache-Miss Settlement (Storage Providers)
 
-Storage providers call the FilBeamOperator to settle the cache-miss rail:
-
-```javascript
-await walletClient.writeContract({
-  address: filBeamOperator,
-  abi: filBeamOperatorAbi,
-  functionName: 'settleCacheMissPaymentRails',
-  args: [dataSetIds]
-})
-```
+Storage providers call `FilBeamOperator.settleCacheMissPaymentRails` to claim their compensation for serving cache misses. The pre-calculated amount is transferred from the payment rail to the provider's Filecoin Pay account.
 
 ### Settlement Flow
 
@@ -329,20 +281,6 @@ The $14/TiB cache-miss cost comes from being charged on BOTH rails:
 - **Transparent**: All transactions queriable on-chain
 - **Trustless**: Smart contracts enforce payment rules
 
-## Monitoring Your Account
-
-### Check Quota
-
-```javascript
-const STATS_API = 'https://calibration.stats.filbeam.io'
-
-const response = await fetch(`${STATS_API}/data-set/${dataSetId}`)
-const stats = await response.json()
-
-const cdnQuotaGiB = Number(stats.cdnEgressQuota) / (1024 ** 3)
-console.log('CDN Quota:', cdnQuotaGiB.toFixed(2), 'GiB')
-```
-
 ## Service Termination
 
 Currently FilBeam service can only be terminated by terminating the full service (deleting the data set):
@@ -363,7 +301,13 @@ sequenceDiagram
 
 ## See Also
 
-- [Quota System](quota-system.md) - Understanding dual quotas
-- [Usage Reporting](usage-reporting.md) - How usage is reported on-chain
-- [Pricing Reference](../pricing.md) - Detailed pricing information
-- [Top Up CDN Quota](../how-to/top-up-cdn-quota.md) - Step-by-step guide
+**Explanations:**
+- [Quota System](quota-system.md) - Understanding the dual quota design
+- [Usage Reporting](usage-reporting.md) - Why usage is reported on-chain
+
+**How-To Guides:**
+- [Top Up CDN Quota](../how-to/top-up-cdn-quota.md) - Step-by-step instructions
+- [Monitor Usage](../how-to/monitor-usage.md) - Check your quotas and usage
+
+**Reference:**
+- [Pricing](../pricing.md) - Detailed pricing information
