@@ -64,6 +64,29 @@ function recordUsageRollups(
 - Each array must have the same length
 - Epochs are 30-second intervals on Filecoin
 
+**Field Details:**
+
+| Field | Description |
+|-------|-------------|
+| `toEpoch` | Filecoin epoch up to which usage is reported. Convert to timestamp: `genesisTimestamp + (epoch × 30000)` |
+| `dataSetIds` | uint256[] | Array of dataset IDs the usage is recorded for |
+| `cdnBytesUsed` | Total CDN egress per dataset (includes both cache hits and cache misses) |
+| `cacheMissBytesUsed` | Cache miss bytes per dataset - basis for storage provider compensation |
+
+**Epoch Conversion:**
+
+```javascript
+// Genesis timestamps (milliseconds)
+const CALIBRATION_GENESIS = 1667326380000
+const MAINNET_GENESIS = 1598306400000
+const EPOCH_DURATION = 30000  // 30 seconds
+
+function epochToDate(epoch, network = 'calibration') {
+  const genesis = network === 'mainnet' ? MAINNET_GENESIS : CALIBRATION_GENESIS
+  return new Date(genesis + (Number(epoch) * EPOCH_DURATION))
+}
+```
+
 ---
 
 ### settleCDNPaymentRails
