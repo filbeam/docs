@@ -16,13 +16,13 @@ The filtering pipeline validates requests across several dimensions:
 
 2. **Payment authorization** — The payer (identified in the retrieval URL) must have an active deal that covers this piece with CDN delivery enabled.
 
-3. **Compliance** — The payer wallet must pass OFAC sanctions screening.
+3. **Compliance** — The payer wallet must pass sanctions screening.
 
-4. **Provider readiness** — Each service provider must have a verified, approved service URL.
+4. **Provider eligibility** — Only Filecoin Onchain Cloud-approved service providers qualify to serve content.
 
 5. **Quota limits** — Both CDN egress and cache-miss quotas must have remaining capacity (when enforced).
 
-Only pieces that pass **all** filters become retrieval candidates. Each filter serves a distinct purpose: content filters ensure the data exists, payment filters enforce commercial agreements, compliance filters satisfy regulatory requirements, and quota filters prevent overuse.
+Only pieces that pass **all** filters become retrieval candidates. Each filter serves a distinct purpose: content filters ensure the data exists, payment filters enforce commercial agreements, compliance filters satisfy regulatory requirements, provider eligibility ensures content is served by approved storage providers, and quota filters prevent overuse.
 
 ### Why Multiple Candidates?
 
@@ -87,7 +87,7 @@ Before contacting any storage provider, FilBeam checks the cache.
 When content is found in cache:
 - No storage provider is contacted
 - No retrieval candidate selection occurs
-- The response is served directly from Cloudflare's edge network
+- The response is served directly from the cache
 
 When content is fetched from an SP:
 - The response is cached for future requests
@@ -100,7 +100,7 @@ Usage is tracked regardless of which storage provider ultimately serves the cont
 
 | Scenario | Egress Counted | SP Credited |
 |----------|----------------|-------------|
-| Cache hit | Yes (CDN egress) | Last SP that populated cache |
+| Cache hit | Yes (CDN egress) | None |
 | Cache miss, SP1 succeeds | Yes (CDN + cache-miss egress) | SP1 |
 | Cache miss, SP1 fails, SP2 succeeds | Yes (CDN + cache-miss egress) | SP2 |
 | All SPs fail | No egress | None |
@@ -109,7 +109,7 @@ The `X-Data-Set-ID` response header indicates which data set (and thus which dea
 
 ## Why This Architecture Simplifies Client Integration
 
-The retrieval design shifts complexity from clients to the platform. Rather than requiring applications to maintain provider lists, implement retry logic, or manage failover, FilBeam handles these concerns internally.
+The retrieval design shifts complexity from clients to FilBeam. Rather than requiring applications to maintain provider lists, implement retry logic, or manage failover, FilBeam handles these concerns internally.
 
 This means a single retrieval URL (`https://{payer-address}.filbeam.io/piece/{piece-cid}`) works regardless of which storage provider ultimately serves the content. The payer address in the URL determines which deals are eligible, and the system handles provider selection automatically.
 
