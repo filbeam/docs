@@ -17,19 +17,9 @@ layout:
 
 # Settle Payment Rails (For Storage Providers)
 
-This guide explains how storage providers can settle their payment rails to collect earnings from cache-miss retrievals.
+This guide explains how storage providers can settle their cache-miss payment rails to collect earnings.
 
-## Overview
-
-When users retrieve content through FilBeam that results in a cache miss, the storage provider serves the data and earns fees. These fees accumulate in payment rails and must be settled to claim the earnings.
-
-### How It Works
-
-1. **User requests content** via FilBeam CDN
-2. **Cache miss occurs** - content is fetched from your storage node
-3. **Fees accumulate** in the cache-miss payment rail
-4. **You settle** the payment rail to claim your earnings
-5. **Earnings transferred** to your Filecoin Pay accounts
+For background on how the payment system works, see [Payment Model](../explanation/payment-model.md).
 
 ## Prerequisites
 

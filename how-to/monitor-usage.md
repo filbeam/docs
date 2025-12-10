@@ -17,14 +17,7 @@ layout:
 
 # Monitor Usage
 
-This guide explains how to track your FilBeam egress usage and quota consumption.
-
-## Overview
-
-FilBeam provides two ways to monitor usage:
-
-1. **Synapse SDK** - Programmatic access to quota stats
-2. **Stats API** - REST endpoints for integration
+This guide explains how to track your FilBeam egress usage and quota consumption using the Synapse SDK or Stats API.
 
 ## Using Synapse SDK
 

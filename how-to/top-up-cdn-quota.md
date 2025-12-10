@@ -103,22 +103,11 @@ console.log('New CDN Quota:', newCdnQuotaTiB.toFixed(3), 'TiB')
 console.log('New Cache Miss Quota:', newCacheMissQuotaTiB.toFixed(3), 'TiB')
 ```
 
-## Quota Calculation
+## Pricing
 
-Both rails have the same $7/TiB rate:
+Both payment rails charge **$7/TiB**. For example, $7 USDFC gives you 1 TiB of quota.
 
-```
-CDN Quota (bytes) = (USDFC amount × BYTES_PER_TIB) / RATE_PER_TIB
-Cache Miss Quota (bytes) = (USDFC amount × BYTES_PER_TIB) / RATE_PER_TIB
-```
-
-Where:
-- `BYTES_PER_TIB` = 1,099,511,627,776 (1024^4)
-- `RATE_PER_TIB` = $7 (7 × 10^18 in USDFC with 18 decimals)
-
-### Pricing
-
-For full pricing explanation please reffer to the [Pricing](..//explanation/pricing.md) page.
+For detailed pricing information and cost calculations, see [Pricing](../explanation/pricing.md).
 
 ## Complete Top-Up Script
 

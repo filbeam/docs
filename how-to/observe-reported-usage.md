@@ -238,7 +238,9 @@ const myUsage = await getUsageForDatasets(['12345', '67890'], 1000000n, 1001000n
 
 ## Understanding the Data
 
-### Fields Explained
+For detailed field documentation, see [FilBeamOperator Contract Reference](../reference/filbeam-operator.md#recordusagerollups).
+
+**Quick reference:**
 
 | Field | Description |
 |-------|-------------|
@@ -247,43 +249,7 @@ const myUsage = await getUsageForDatasets(['12345', '67890'], 1000000n, 1001000n
 | `cdnBytesUsed` | Total CDN egress per dataset (cache hits + misses) |
 | `cacheMissBytesUsed` | Cache miss bytes per dataset (your compensation basis) |
 
-### Converting Epochs to Time
-
-```javascript
-// Genesis timestamps differ by network
-const CALIBRATION_GENESIS_TIMESTAMP = 1667326380000 // Calibration testnet genesis (ms)
-const MAINNET_GENESIS_TIMESTAMP = 1598306400000 // Filecoin mainnet genesis (ms)
-const EPOCH_DURATION = 30000 // 30 seconds in ms
-
-// Use the appropriate genesis for your network
-const GENESIS_TIMESTAMP = CALIBRATION_GENESIS_TIMESTAMP
-
-function epochToDate(epoch) {
-  const timestamp = GENESIS_TIMESTAMP + (Number(epoch) * EPOCH_DURATION)
-  return new Date(timestamp)
-}
-
-// Usage
-const report = await decodeUsageReport(txHash)
-console.log('Report covers usage up to:', epochToDate(report.toEpoch))
-```
-
-### Formatting Bytes
-
-```javascript
-function formatBytes(bytes) {
-  const units = ['B', 'KiB', 'MiB', 'GiB', 'TiB']
-  let value = Number(bytes)
-  let unitIndex = 0
-
-  while (value >= 1024 && unitIndex < units.length - 1) {
-    value /= 1024
-    unitIndex++
-  }
-
-  return `${value.toFixed(2)} ${units[unitIndex]}`
-}
-```
+The complete monitoring script below includes helper functions for epoch conversion and byte formatting.
 
 ## Complete Monitoring Script
 
