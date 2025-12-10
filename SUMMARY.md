@@ -20,6 +20,7 @@
 * [Quota System](explanation/quota-system.md)
 * [Usage Reporting](explanation/usage-reporting.md)
 * [Pricing](explanation/pricing.md)
+* [Retrieval and Fallback Mechanism](explanation/retrieval-and-fallback.md)
 
 ## How To Guides
 
