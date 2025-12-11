@@ -29,7 +29,7 @@ Only pieces that pass **all** filters become retrieval candidates. Each filter s
 A single piece CID may have multiple retrieval candidates because:
 
 - **Multiple Replicas**: The same content may be stored with different service providers for redundancy.
-- **Multiple Deals**: Different payers may have deals for the same content, each with their own service provider relationships.
+- **Multiple Deals**: A payer may have multiple deals for the same content, on different or even the same service provider.
 
 This redundancy enables the fallback mechanism described below.
 
