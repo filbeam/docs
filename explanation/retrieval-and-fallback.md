@@ -14,15 +14,15 @@ The filtering pipeline selects retrieval candidates based on multiple factors:
 
 1. **Deal available** — Pick SPs that have active deals for given piece and payer
 
-1. **CDN enabled** — Keep only deals where `"withCDN": true` exists in meta data
+2. **CDN enabled** — Keep only deals where `"withCDN": true` exists in meta data
 
-1. **Payer compliance** — The payer wallet address must not be sanctioned
+3. **Payer compliance** — The payer wallet address must not be sanctioned
 
-1. **Provider eligible** — Only Filecoin Onchain Cloud-approved service providers qualify to serve content
+4. **Provider eligible** — Only Filecoin Onchain Cloud-approved service providers qualify to serve content
 
-1. **Quota limits met** — Both CDN egress and cache-miss quotas must have remaining capacity
+5. **Quota limits met** — Both CDN egress and cache-miss quotas must have remaining capacity
 
-1. **Piece compliance** — The piece CID must not be part of https://badbits.dwebops.pub/
+6. **Piece compliance** — The piece CID must not be part of https://badbits.dwebops.pub/
 
 All `(SP,piece)` tuples that pass **all** filters become retrieval candidates.
 
