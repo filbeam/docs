@@ -113,11 +113,13 @@ When users request content, FilBeam serves it and tracks usage:
 sequenceDiagram
     participant User
     participant CDN as FilBeam CDN
-    participant Cache
     participant DB as Database
+    participant Cache
     participant SP as Storage Provider
 
     User->>CDN: GET /piece/{cid}
+    CDN->>DB: Check BOTH quotas
+    DB-->>CDN: Quotas OK
     CDN->>Cache: Check cache
     alt Cache Hit
         Cache-->>CDN: Return content
@@ -126,7 +128,6 @@ sequenceDiagram
         DB->>DB: Decrement CDN quota only
     else Cache Miss
         Cache-->>CDN: Not found
-        CDN->>DB: Check quotas
         CDN->>SP: Fetch content
         SP-->>CDN: Return content
         CDN->>Cache: Store content
@@ -135,6 +136,10 @@ sequenceDiagram
         DB->>DB: Decrement BOTH quotas
     end
 ```
+
+{% hint style="info" %}
+**Note:** Both quotas are checked before the cache lookup. This means requests require both CDN and cache-miss quota to be available, even if the content is cached. We plan to optimize this in a future release.
+{% endhint %}
 
 **Quota deduction rules:**
 

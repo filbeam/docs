@@ -46,16 +46,17 @@ All requests are blocked with HTTP 402, regardless of cache-miss quota remaining
 
 ### When Cache-Miss Quota Runs Out
 
-- **Cache hits continue working** - cached content is still served
-- **Cache misses are blocked** with HTTP 402
+All requests are blocked with HTTP 402, regardless of CDN quota remaining.
 
-**Why?** You can still serve content that's already cached, but new content cannot be fetched from storage providers until you top up.
+**Why?** Quotas are checked before FilBeam knows whether content is cached. Since a cache miss might occur, both quotas must be available.
 
-This design lets you continue serving popular content even if you've exhausted your cache-miss budget.
+{% hint style="info" %}
+**Future improvement:** We plan to optimize this so cached content can be served even without cache-miss quota. This would allow you to keep serving popular content while you top up.
+{% endhint %}
 
 ## Choosing a Top-Up Strategy
 
-How you split your top-up between CDN and cache-miss quotas depends on your content access patterns:
+How you split your top-up between CDN and cache-miss quotas depends on your content access patterns. Note that **both quotas must be non-zero** for requests to succeed — the split only affects how quickly each quota depletes.
 
 ### Frequently Accessed Content
 
@@ -81,7 +82,9 @@ The dual quota system enables direct payment rails between you and each service 
 
 ### What if I run out of cache-miss quota but have CDN quota?
 
-Cached content continues to be served normally. Only requests that would require fetching from the storage provider are blocked. This lets you keep serving cached content while you top up.
+Currently, all requests are blocked. Quotas are checked before FilBeam knows whether content is cached, so both quotas must be available for any request.
+
+We plan to improve this in a future release to allow cached content to be served even without cache-miss quota.
 
 ### Can I convert one quota type to another?
 
