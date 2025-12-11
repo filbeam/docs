@@ -22,7 +22,7 @@ The FilBeam Stats API provides endpoints for querying egress quota and usage sta
 ## Base URL
 
 ```
-https://stats.filbeam.io
+https://calibration.stats.filbeam.io
 ```
 
 ## Authentication
@@ -71,7 +71,7 @@ GET /data-set/{dataSetId}
 #### Example
 
 ```bash
-curl https://stats.filbeam.io/data-set/12345
+curl https://calibration.stats.filbeam.io/data-set/12345
 ```
 
 ```json
@@ -133,7 +133,7 @@ GET /payer/{payerAddress}
 #### Example
 
 ```bash
-curl https://stats.filbeam.io/payer/0x1234567890abcdef1234567890abcdef12345678
+curl https://calibration.stats.filbeam.io/payer/0x1234567890abcdef1234567890abcdef12345678
 ```
 
 ```json
