@@ -6,7 +6,7 @@ Understanding this architecture helps explain why FilBeam maintains content avai
 
 ## How Retrieval Candidates Are Selected
 
-When FilBeam receives a retrieval request, it performs a multi-stage filtering process to identify all valid **retrieval candidates**—storage providers that can legitimately serve the requested content.
+When FilBeam receives a retrieval request, it performs a multi-stage filtering process to identify all valid **retrieval candidates**—storage providers that can be attempted to fetch content from.
 
 ### The Filtering Pipeline
 
