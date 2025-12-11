@@ -208,8 +208,8 @@ sequenceDiagram
 
 ### Settlement Details
 
-- **Anyone can call** the settlement methods, but funds go to the designated payee's Filecoin Pay account
-- **Partial settlements** are supported if locked funds are insufficient
+- **Anyone can call** the settlement methods, but funds go to the designated payee's Filecoin Pay accountked funds are insufficien
+- **Partial settlements** are supported if loct
 - **Amounts accumulate** between settlements - no need to settle after every usage report
 
 ## Cost Breakdown
@@ -225,7 +225,12 @@ The $14/TiB cache-miss cost comes from being charged on BOTH rails.
 
 ## Service Termination
 
-Currently FilBeam service can only be terminated by terminating the full service (deleting the data set):
+FilBeam service can be terminated in two ways:
+
+Full termination — Deletes the data set. Available to users.
+FilBeam-only termination — Retains the data set. Reserved for FilBeam controller to enforce sanctions compliance when a user's wallet is flagged.
+
+Users who wish to stop using FilBeam must perform a full termination, which includes deleting the data set:
 
 ```mermaid
 sequenceDiagram
