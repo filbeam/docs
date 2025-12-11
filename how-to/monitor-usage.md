@@ -32,7 +32,7 @@ const synapse = await Synapse.create({
   withCDN: true,
 })
 
-const dataSetId = 'your-data-set-id'
+const dataSetId = 0 // replace with your data set ID
 const stats = await synapse.filbeamService.getDataSetStats(dataSetId)
 
 console.log('CDN Egress Quota:', stats.cdnEgressQuota, 'bytes')
