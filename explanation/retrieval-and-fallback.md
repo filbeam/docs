@@ -10,7 +10,7 @@ When FilBeam receives a retrieval request, it performs a multi-stage filtering p
 
 ### The Filtering Pipeline
 
-The filtering pipeline validates requests across several dimensions:
+The filtering pipeline selects retrieval candidates based on multiple factors:
 
 1. **Content availability** — The requested piece must exist and be hosted by at least one active service provider.
 
