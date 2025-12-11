@@ -34,7 +34,7 @@ FilBeam uses two separate quotas to enable **direct payment rails** between you 
 1. **CDN Egress Quota** - Derived from funds you deposit into a payment rail between you and FilBeam.
 2. **Cache Miss Egress Quota** - Derived from funds you deposit into a separate payment rail between you and the storage provider.
 
-The key design principle is that FilBeam never handles storage provider funds. When you top up cache-miss quota, those funds go into a payment rail that only you and your storage provider can access—FilBeam simply tracks and reports usage. This creates a direct financial relationship between you and your storage provider.
+The key design principle is that FilBeam never handles storage provider funds. When you top up cache-miss quota, those funds go into a payment rail that only you and your storage provider can access — FilBeam simply tracks and reports usage. This creates a direct financial relationship between you and your storage provider.
 
 ## Quota Exhaustion
 
