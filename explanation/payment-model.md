@@ -138,7 +138,7 @@ sequenceDiagram
 ```
 
 {% hint style="info" %}
-**Note:** Both quotas are checked before the cache lookup. This means requests require both CDN and cache-miss quota to be available, even if the content is cached. We plan to optimize this in a future release.
+**Note:** Both quotas are checked before the cache lookup. This means requests require both CDN and cache-miss quota to be available, even if the content is cached. We plan to optimize this in a future release — track progress in [filbeam/worker#398](https://github.com/filbeam/worker/issues/398).
 {% endhint %}
 
 **Quota deduction rules:**

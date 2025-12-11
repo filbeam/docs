@@ -51,7 +51,7 @@ All requests are blocked with HTTP 402, regardless of CDN quota remaining.
 **Why?** Quotas are checked before FilBeam knows whether content is cached. Since a cache miss might occur, both quotas must be available.
 
 {% hint style="info" %}
-**Future improvement:** We plan to optimize this so cached content can be served even without cache-miss quota. This would allow you to keep serving popular content while you top up.
+**Future improvement:** We plan to optimize this so cached content can be served even without cache-miss quota. This would allow you to keep serving popular content while you top up. Track progress in [filbeam/worker#398](https://github.com/filbeam/worker/issues/398).
 {% endhint %}
 
 ## Choosing a Top-Up Strategy
@@ -84,7 +84,7 @@ The dual quota system enables direct payment rails between you and each service 
 
 Currently, all requests are blocked. Quotas are checked before FilBeam knows whether content is cached, so both quotas must be available for any request.
 
-We plan to improve this in a future release to allow cached content to be served even without cache-miss quota.
+We plan to improve this in a future release to allow cached content to be served even without cache-miss quota. Track progress in [filbeam/worker#398](https://github.com/filbeam/worker/issues/398).
 
 ### Can I convert one quota type to another?
 
