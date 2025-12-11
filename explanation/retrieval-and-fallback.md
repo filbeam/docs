@@ -80,20 +80,6 @@ A retry does **not** occur when:
 
 If all candidates fail, FilBeam returns a `502 Bad Gateway` response. The response includes debugging information about which providers were attempted, helping operators diagnose availability issues.
 
-## Caching Layer
-
-Before contacting any storage provider, FilBeam checks the cache.
-
-When content is found in cache:
-- No storage provider is contacted
-- No retrieval candidate selection occurs
-- The response is served directly from the cache
-
-When content is fetched from an SP:
-- The response is cached for future requests
-- Cache TTL is configurable per environment
-- Subsequent requests benefit from edge caching
-
 ## Billing and Usage Accounting
 
 Usage is tracked regardless of which storage provider ultimately serves the content:
