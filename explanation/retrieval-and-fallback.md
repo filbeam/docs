@@ -56,7 +56,7 @@ flowchart TD
 
 ### Key Design Decisions
 
-**Random Selection**: Rather than using a fixed priority order, FilBeam randomly selects from available candidates. This provides natural load balancing across storage providers and prevents a single "primary" provider from becoming a bottleneck.
+**Random Selection**: Rather than using a fixed priority order, FilBeam randomly selects from available candidates. This provides natural load balancing across storage providers and prevents a single "primary" provider from becoming a bottleneck. Additionally, it helps with distributing egress fees among multiple providers.
 
 **Immediate Retry**: When a retrieval attempt fails, the system immediately tries the next candidate without any backoff delay. This minimizes latency for end users—if one SP is down, the failover happens in milliseconds.
 
