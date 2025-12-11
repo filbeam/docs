@@ -12,15 +12,17 @@ When FilBeam receives a retrieval request, it performs a multi-stage filtering p
 
 The filtering pipeline selects retrieval candidates based on multiple factors:
 
-1. **Content availability** — The requested piece must exist and be hosted by at least one active service provider.
+1. **Deal available** — Pick SPs that have active deals for given piece and payer
 
-2. **Payment authorization** — The payer (identified in the retrieval URL) must have an active deal that covers this piece with CDN delivery enabled.
+1. **CDN enabled** — Keep only deals where `"withCDN": true` exists in meta data
 
-3. **Compliance** — The payer wallet must pass sanctions screening.
+1. **Payer compliance** — The payer wallet address must not be sanctioned
 
-4. **Provider eligibility** — Only Filecoin Onchain Cloud-approved service providers qualify to serve content.
+1. **Provider eligible** — Only Filecoin Onchain Cloud-approved service providers qualify to serve content
 
-5. **Quota limits** — Both CDN egress and cache-miss quotas must have remaining capacity (when enforced).
+1. **Quota limits met** — Both CDN egress and cache-miss quotas must have remaining capacity
+
+1. **Piece compliance** — The piece CID must not be part of https://badbits.dwebops.pub/
 
 All `(SP,piece)` tuples that pass **all** filters become retrieval candidates.
 
