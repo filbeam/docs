@@ -51,6 +51,8 @@ If users retrieve content directly from storage providers (bypassing FilBeam):
 - That traffic is NOT recorded in FilBeam's systems
 - It is NOT reported to the blockchain
 - It is NOT subject to FilBeam billing
+- The Storage Provider is NOT rewarded for the retrieval service
+
 
 This is by design - FilBeam only bills for traffic it actually serves.
 
