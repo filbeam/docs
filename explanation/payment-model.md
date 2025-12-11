@@ -101,25 +101,9 @@ CDN Quota (bytes) = (USDFC amount × BYTES_PER_TIB) / CDN_RATE
 Cache Miss Quota (bytes) = (USDFC amount × BYTES_PER_TIB) / CACHE_MISS_RATE
 ```
 
-Where:
-- `BYTES_PER_TIB` = 1,099,511,627,776 (1024^4)
-- `CDN_RATE` = 7 × 10^18 (with 18 decimals = $7)
-- `CACHE_MISS_RATE` = 7 × 10^18 (with 18 decimals = $7)
-
-**Both rails have the same $7/TiB rate.** The $14/TiB effective cost for cache misses comes from being charged on BOTH rails simultaneously.
-
-**Example: $7 CDN + $7 cache-miss top-up**
-```
-CDN Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
-          = 1,099,511,627,776 bytes
-          = 1 TiB
-
-Cache Miss Quota = (7 × 10^18 × 1,099,511,627,776) / (7 × 10^18)
-                 = 1,099,511,627,776 bytes
-                 = 1 TiB
-```
-
 The updated quota is stored in FilBeam's database.
+
+To learn about the effective rates used, see [Pricing](pricing.md).
 
 ## Phase 3: Content Delivery (Off-Chain)
 

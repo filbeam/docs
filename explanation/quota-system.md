@@ -71,7 +71,7 @@ If your content is accessed infrequently (low cache hit ratio):
 
 ### Unknown Access Patterns
 
-Start with a balanced split and monitor your actual cache hit ratio via the Stats API. Adjust future top-ups based on observed patterns.
+Start with a balanced split and monitor your actual cache hit ratio via the [Stats API](../reference/stats-api.md). Adjust future top-ups based on observed patterns.
 
 ## FAQ
 
