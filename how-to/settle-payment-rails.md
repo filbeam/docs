@@ -15,7 +15,7 @@ layout:
     visible: true
 ---
 
-# Settle Payment Rails (For Storage Providers)
+# Settle Payment Rails (Storage Providers)
 
 This guide explains how storage providers can settle their cache-miss payment rails to collect earnings.
 
@@ -26,7 +26,7 @@ For background on how the payment system works, see [Payment Model](../explanati
 - Storage provider wallet with signing capability
 - Node.js with viem library installed
 - Data set IDs for which you're the storage provider
-- tFIL for gas fees on Calibration testnet
+- tFIL for gas fees on Calibration testnet or FIL on mainnet
 
 ## Contract Information
 
@@ -342,9 +342,7 @@ async function logSettlement(dataSetIds, receipt) {
 
 ### "Insufficient funds" Error
 
-You need tFIL for gas: Get testnet FIL from faucet:
-
-https://faucet.calibnet.chainsafe-fil.io/
+You'll need tFIL (calibration) or FIL (mainnet) for gas fees. On testnet, claim tFIL from the [Calibration faucet](https://faucet.calibnet.chainsafe-fil.io/). On mainnet, acquire FIL through a centralized exchange (Coinbase, Binance) or swap via Squidrouter. 
 
 ### "Data set not found" Error
 

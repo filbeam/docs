@@ -15,7 +15,7 @@ layout:
     visible: true
 ---
 
-# Monitor Usage
+# Monitor Usage (Clients)
 
 This guide explains how to track your FilBeam egress usage and quota consumption using the Synapse SDK or Stats API.
 
@@ -27,8 +27,9 @@ This guide explains how to track your FilBeam egress usage and quota consumption
 import { Synapse } from '@filoz/synapse-sdk'
 
 const synapse = await Synapse.create({
-  client: walletClient,
-  network: 'calibration'
+  privateKey: process.env.PRIVATE_KEY,
+  network: 'calibration',
+  withCDN: true,
 })
 
 const dataSetId = 'your-data-set-id'

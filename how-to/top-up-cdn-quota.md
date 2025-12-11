@@ -15,7 +15,7 @@ layout:
     visible: true
 ---
 
-# Top Up CDN Quota
+# Top Up CDN Quota (Clients)
 
 This guide explains how to increase your FilBeam CDN egress quota when it's running low.
 
@@ -121,7 +121,8 @@ async function topUpCDNQuota(privateKey, dataSetId, cdnUsdfc, cacheMissUsdfc = 0
   // Initialize SDK
   const synapse = await Synapse.create({
     privateKey,
-    rpcURL: RPC_URLS.calibration.http
+    rpcURL: RPC_URLS.calibration.http,
+    withCDN: true,
   })
 
   // Initialize WarmStorageService

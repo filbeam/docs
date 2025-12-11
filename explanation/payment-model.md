@@ -55,7 +55,7 @@ sequenceDiagram
 | CDN Egress | User | FilBeam | CDN delivery fees |
 | Cache-Miss Egress | User | Storage Provider | Retrieval from origin |
 
-Unlike the storage payment rails CDN and cache-miss rails do not have a set payment rate. Rather, these rails use fixed lockup and are settled via one-time payments. 
+Unlike the storage payment rails, CDN and cache-miss rails do not have a set payment rate. Rather, these rails use fixed lockup and are settled via one-time payments. 
 
 See [Payment Rails](../reference/payment-rails.md) to learn how do payment rails work in Filecoin Pay.
 

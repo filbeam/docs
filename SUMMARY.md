@@ -16,8 +16,8 @@
 
 ## How it works
 
-* [Pay-per-byte Payment Model](explanation/payment-model.md)
 * [Quota System](explanation/quota-system.md)
+* [Pay-per-byte Payment Model](explanation/payment-model.md)
 * [Usage Reporting](explanation/usage-reporting.md)
 * [Pricing](explanation/pricing.md)
 

@@ -15,7 +15,7 @@ layout:
     visible: true
 ---
 
-# Observe Reported Usage (For Storage Providers)
+# Observe Reported Usage (Storage Providers)
 
 This guide explains how storage providers can observe and verify the usage data that FilBeam reports on-chain.
 
@@ -98,9 +98,9 @@ async function decodeUsageReport(txHash) {
   // Get transaction
   const tx = await publicClient.getTransaction({ hash: txHash })
 
-  // Verify it's to FilBeamOperator
+  // Verify tx was sent to the FilBeamOperator contract address
   if (tx.to?.toLowerCase() !== FILBEAM_OPERATOR_ADDRESS.toLowerCase()) {
-    throw new Error('Not a FilBeamOperator transaction')
+    throw new Error('Transaction not sent to the FilBeamOperator contract address')
   }
 
   // Decode the function call

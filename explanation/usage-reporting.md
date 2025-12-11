@@ -68,8 +68,9 @@ Usage is reported up to the previous complete Filecoin epoch, ensuring only fina
 ## Verification and Trust Model
 
 Storage providers can verify reported cache-miss bytes by:
+
 1. Monitoring `recordUsageRollups` transactions on the FilBeamOperator contract
-2. Comparing reported bytes with their own delivery logs
+2. Comparing reported bytes with their own delivery logs for requests served via FilBeam
 
 Earnings are calculated as: `cache_miss_bytes × $7/TiB`
 
