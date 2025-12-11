@@ -17,7 +17,7 @@ layout:
 
 # Monitor Usage (Clients)
 
-This guide explains how to track your FilBeam egress usage and quota consumption using the Synapse SDK or Stats API.
+This guide explains how to track your FilBeam egress usage and quota consumption using the Synapse SDK, Stats API, or the FilBeam Dashboard.
 
 ## Using Synapse SDK
 
@@ -138,6 +138,26 @@ console.log('Cache Miss Requests:', stats.cacheMissRequests)
 console.log('Total Egress:', formatBytes(stats.totalEgressBytes))
 console.log('Remaining CDN Quota:', formatBytes(stats.remainingCDNEgressBytes))
 ```
+
+## Using FilBeam Dashboard
+
+The FilBeam Dashboard provides a visual interface for monitoring your usage without writing code.
+
+Visit your client dashboard at:
+
+```
+https://calibration.dashboard.filbeam.com/client/<your-wallet-address>
+```
+
+The dashboard displays:
+
+- Stats for all your data sets
+- Remaining CDN egress quota per data set
+- Remaining cache miss egress quota per data set
+
+{% hint style="warning" %}
+**Note:** The dashboard is deployed hourly, so stats are not real-time. For real-time data, use the Stats API or Synapse SDK.
+{% endhint %}
 
 ## Next Steps
 
