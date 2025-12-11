@@ -31,7 +31,7 @@ All `(SP,piece)` tuples that pass **all** filters become retrieval candidates.
 A single piece CID may have multiple retrieval candidates because:
 
 - **Multiple Replicas**: The same content may be stored with different service providers for redundancy.
-- **Multiple Deals**: A payer may have multiple deals for the same content, on different or even the same service provider.
+- **Multiple Deals**: The same payer may have multiple deals for the same content, with different or even the same service provider.
 
 This redundancy enables the fallback mechanism described below.
 
@@ -41,15 +41,14 @@ Once candidates are identified, FilBeam attempts to retrieve the content using a
 
 ```mermaid
 flowchart TD
-    Start([Request Received]) --> CheckCache{Check Cache}
-    CheckCache -->|HIT| ReturnCached[Return Cached Content]
-    CheckCache -->|MISS| GetCandidates[Get Retrieval Candidates]
+    Start([Request Received]) --> GetCandidates[Get Retrieval Candidates]
     GetCandidates --> HasCandidates{Candidates Available?}
     HasCandidates -->|No| Return502[Return 502 Bad Gateway]
     HasCandidates -->|Yes| RandomSelect[Randomly Select Candidate]
-    RandomSelect --> AttemptRetrieval[Attempt Retrieval from SP]
-    AttemptRetrieval --> RemoveFromPool[Remove Candidate from Pool]
-    RemoveFromPool --> Success{HTTP 2xx Response?}
+    RandomSelect --> CheckCache{Check Cache}
+    CheckCache -->|HIT| ReturnCached[Return Cached Content]
+    CheckCache -->|MISS| AttemptRetrieval[Attempt Retrieval from SP]
+    AttemptRetrieval --> Success{Retrieval Successful?}
     Success -->|Yes| CacheResponse[Cache Response]
     CacheResponse --> ReturnContent[Return Content to Client]
     Success -->|No| HasCandidates
@@ -61,9 +60,9 @@ flowchart TD
 
 **Immediate Retry**: When a retrieval attempt fails, the system immediately tries the next candidate without any backoff delay. This minimizes latency for end users—if one SP is down, the failover happens in milliseconds.
 
-**Exhaustive Attempts**: The system tries every available candidate before giving up. If you have three SPs hosting the same content, all three will be attempted before returning an error.
+**Fallback on Failure**: When retrieval fails, the system tries other candidates until one succeeds. Only if all candidates fail does it return an error.
 
-**No Duplicate Attempts**: Once an SP is tried (successfully or not), it's removed from the candidate pool. The system won't retry the same provider within a single request.
+**No Duplicate Attempts**: Once a retrieval candidate fails, that specific candidate is removed from the pool.
 
 ### What Triggers a Retry?
 
