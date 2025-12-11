@@ -22,7 +22,7 @@ The filtering pipeline selects retrieval candidates based on multiple factors:
 
 5. **Quota limits** — Both CDN egress and cache-miss quotas must have remaining capacity (when enforced).
 
-Only pieces that pass **all** filters become retrieval candidates. Each filter serves a distinct purpose: content filters ensure the data exists, payment filters enforce commercial agreements, compliance filters satisfy regulatory requirements, provider eligibility ensures content is served by approved storage providers, and quota filters prevent overuse.
+All `(SP,piece)` tuples that pass **all** filters become retrieval candidates.
 
 ### Why Multiple Candidates?
 
