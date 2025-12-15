@@ -28,13 +28,13 @@ Filecoin Beam speeds up data retrieval, reduces egress bills, and protects Filec
 
 In order to use Filecoin Beam, you must store data on the Filecoin Calibration testnet in two ways:
 
-1. Programmatically [using the Synapse SDK](broken-reference)
-2. Manually [using a demo web app](broken-reference)
+1. Programmatically [using the Synapse SDK](reference/synapse-sdk.md)
+2. Manually [using a demo web app](using-demo-web-app/about.md)
 
 And before you do anything, you must [set up your wallet](https://filbeam.com/docs#block-216cdd5cccdb8097a0a8cd9eb280f4bf) first.
 
 ### Jump right in
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td></td><td><strong>Get Started</strong></td><td>Set Up Your Wallet</td><td><a href=".gitbook/assets/illustration3.png">illustration3.png</a></td><td></td><td><a href="getting-started/quickstart.md">quickstart.md</a></td></tr><tr><td></td><td><strong>Synapse SDK</strong></td><td>Learn with Filecoin's SDK</td><td><a href=".gitbook/assets/illustration2.png">illustration2.png</a></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td></td><td><strong>Demo Web App</strong></td><td>Start in the demo app</td><td><a href=".gitbook/assets/illustration1.png">illustration1.png</a></td><td></td><td><a href="broken-reference">Broken link</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td></td><td><strong>Get Started</strong></td><td>Set Up Your Wallet</td><td><a href=".gitbook/assets/illustration3.png">illustration3.png</a></td><td></td><td><a href="getting-started/quickstart.md">quickstart.md</a></td></tr><tr><td></td><td><strong>Synapse SDK</strong></td><td>Learn with Filecoin's SDK</td><td><a href=".gitbook/assets/illustration2.png">illustration2.png</a></td><td></td><td><a href="reference/synapse-sdk.md">reference/synapse-sdk.md</a></td></tr><tr><td></td><td><strong>Demo Web App</strong></td><td>Start in the demo app</td><td><a href=".gitbook/assets/illustration1.png">illustration1.png</a></td><td></td><td><a href="using-demo-web-app/about.md">using-demo-web-app/about.md</a></td></tr></tbody></table>
 
 N.B. File size is limited to 254 MiB. Support for larger files is coming later this year.
