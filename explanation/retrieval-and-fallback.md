@@ -1,4 +1,4 @@
-# Content Retrieval and Service Provider Fallback
+# Content Retrieval and Storage Provider Fallback
 
 FilBeam doesn't rely on a single storage provider to serve content. When a retrieval request arrives, the system identifies all eligible providers that have deals with the payer specified in the retrieval URL and can serve the requested piece. Using a resilient strategy with automatic failover, FilBeam ensures high availability even when individual storage providers experience downtime.
 
