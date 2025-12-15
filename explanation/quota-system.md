@@ -76,10 +76,6 @@ Start with a balanced split and monitor your actual cache hit ratio via the [Sta
 
 ## FAQ
 
-### Why do I need both quotas?
-
-The dual quota system enables direct payment rails between you and each service provider. CDN quota pays FilBeam for content delivery. Cache-miss quota pays your storage provider directly for content retrieval. FilBeam never receives or distributes storage provider funds which keeps the payment flow simple and transparent.
-
 ### What if I run out of cache-miss quota but have CDN quota?
 
 Currently, all requests are blocked. Quotas are checked before FilBeam knows whether content is cached, so both quotas must be available for any request.
