@@ -17,13 +17,13 @@ layout:
 
 # Usage Reporting
 
-This document explains how FilBeam reports usage on-chain and what this means for transparency and verification.
+This document explains how FilBeam reports usage on-chain and what this means for transparency.
 
 For the complete payment flow, see [Payment Model](payment-model.md).
 
 ## Why On-Chain Reporting?
 
-FilBeam records all egress usage on the Filecoin blockchain to ensure transparency, enabling verification to storage providers, and support for on-chain settlement. All reported usage data is publicly visible on-chain, allowing storage providers to independently verify that reported usage matches their delivery logs. 
+FilBeam records all egress usage on the Filecoin blockchain to ensure transparency and support for on-chain settlement.
 
 This design also lets storage providers settle their payment rails at any time without relying on FilBeam to initiate or distribute payments.
 
@@ -66,17 +66,6 @@ Usage is aggregated and reported periodically:
 | Mainnet | Every 4 hours |
 
 Usage is reported up to the previous complete Filecoin epoch, ensuring only finalized data is recorded on-chain.
-
-## Verification and Trust Model
-
-Storage providers can verify reported cache-miss bytes by:
-
-1. Monitoring `recordUsageRollups` transactions on the FilBeamOperator contract
-2. Comparing reported bytes with their own delivery logs for requests served via FilBeam
-
-Earnings are calculated as: `cache_miss_bytes × $7/TiB`
-
-Users storing their content can view reported usage on-chain but have no mechanism to independently verify that reported bytes match their actual usage.
 
 ## See Also
 
