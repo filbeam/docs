@@ -100,7 +100,7 @@ The retrieval design shifts complexity from clients to FilBeam. Rather than requ
 
 This means a single retrieval URL (`https://{payer-address}.filbeam.io/piece/{piece-cid}`) works regardless of which storage provider ultimately serves the content. The payer address in the URL determines which deals are eligible, and the system handles provider selection automatically.
 
-The tradeoff is latency predictability: first-request latency may vary depending on how many providers need to be tried before one succeeds. However, once content is cached at the edge, subsequent requests return immediately from cache without fetching from storage providers.
+The tradeoff is latency predictability: first-request latency may vary depending on how many providers need to be tried before one succeeds.
 
 ## Summary
 
