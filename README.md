@@ -18,6 +18,10 @@ layout:
 
 # Welcome
 
+{% hint style="warning" %}
+**Disclaimer:** FilBeam is not currently fully supported — use with caution. If you have a use case for FilBeam, please [open an issue](https://github.com/filbeam/roadmap/issues) describing it, so we can prioritize the work accordingly.
+{% endhint %}
+
 Filecoin Beam is the blazing-fast data delivery layer for Filecoin.
 
 Specifically, Filecoin Beam serves data stored through the Filecoin Warm Storage Service, a foundational service of the [Filecoin Onchain Cloud](https://filecoin.cloud/).&#x20;
@@ -26,7 +30,7 @@ Filecoin Beam is the easiest and most reliable way to get your data back from Fi
 
 Filecoin Beam speeds up data retrieval, reduces egress bills, and protects Filecoin Storage Providers from scary side of the internet.
 
-In order to use Filecoin Beam, you must store data on the Filecoin Calibration testnet in two ways:
+In order to use Filecoin Beam, you must store data on the Filecoin network — either the Calibration testnet or Mainnet — in two ways:
 
 1. Programmatically [using the Synapse SDK](reference/synapse-sdk.md)
 2. Manually [using a demo web app](using-demo-web-app/about.md)
