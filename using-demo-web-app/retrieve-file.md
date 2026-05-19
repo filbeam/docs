@@ -26,3 +26,9 @@ https://{your-wallet-address}.calibration.filbeam.io/{CID}
 ```
 
 Alternatively, you can fetch using the Synapse SDK, as shown in the previous section.
+
+### Retrieval Granularity
+
+FilBeam currently only serves content at the whole-piece level, identified by the piece CID (the CommP starting with `baga`). Retrieval of individual files or sub-piece content by IPFS CID — for example, a URL of the form `https://{your-wallet-address}.filbeam.io/ipfs/{cid}` — is **not supported** at this time.
+
+If your application needs `/ipfs/:cid` retrieval or another retrieval mode, please share your use case in the [FilBeam roadmap issues](https://github.com/filbeam/roadmap/issues) so we can prioritize it accordingly.
