@@ -102,6 +102,12 @@ This means a single retrieval URL (`https://{payer-address}.filbeam.io/piece/{pi
 
 The tradeoff is latency predictability: first-request latency may vary depending on how many providers need to be tried before one succeeds.
 
+## Retrieval Granularity
+
+FilBeam currently only serves content at the whole-piece level, identified by the piece CID (the CommP starting with `baga`). Retrieval of individual files or sub-piece content by IPFS CID — for example, `https://{payer-address}.filbeam.io/ipfs/{cid}` — is **not supported** at this time.
+
+If your application needs `/ipfs/:cid` retrieval or another retrieval mode, please share your use case in the [FilBeam roadmap issues](https://github.com/filbeam/roadmap/issues) so we can prioritize it accordingly.
+
 ## Summary
 
 FilBeam prioritizes availability over strict provider consistency. By treating eligible providers as interchangeable candidates and exhaustively attempting retrieval before failing, the system maximizes content availability while abstracting provider-level concerns from client applications.
