@@ -106,6 +106,8 @@ The tradeoff is latency predictability: first-request latency may vary depending
 
 FilBeam currently only serves content at the whole-piece level, identified by the piece CID (the CommP starting with `baga`). Retrieval of individual files or sub-piece content by IPFS CID — for example, `https://{payer-address}.filbeam.io/ipfs/{cid}` — is **not supported** at this time.
 
+Support for `/ipfs/:cid` retrieval is planned; you can follow the implementation progress in [filbeam/worker#297](https://github.com/filbeam/worker/issues/297).
+
 If your application needs `/ipfs/:cid` retrieval or another retrieval mode, please share your use case in the [FilBeam roadmap issues](https://github.com/filbeam/roadmap/issues) so we can prioritize it accordingly.
 
 ## Summary
